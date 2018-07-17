@@ -6,7 +6,7 @@ DIR_INC		=	./includes/
 DIR_SRC		=	./source/
 DIR_OBJ		= 	./obj/
 
-HEAD_AVM	=	avm.hpp
+HEAD_AVM	=	avm.hpp IOperand.interface.hpp
 
 SRC_AVM		=	main.cpp
 
