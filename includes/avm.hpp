@@ -3,9 +3,13 @@
 
 # include <iostream>
 
-// typedef enum
-// {
-	
-// }				eOperandType;
+typedef enum	enum_eOperandType
+{
+	Int8 = 1,
+	Int16,
+	Int32,
+	Float,
+	Double
+}				eOperandType;
 
 #endif
