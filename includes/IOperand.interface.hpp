@@ -1,7 +1,9 @@
 #ifndef IOPERAND_INTERFACE_HPP
 # define IOPERAND_INTERFACE_HPP
 
-# include "avm.hpp"
+# include <iostream>
+
+enum	eOperandType {Int8 = 1, Int16, Int32, Float, Double};
 
 class IOperand
 {
