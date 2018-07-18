@@ -3,22 +3,28 @@
 
 void	exceptions_func_thrower_4000_00(void)
 {
-	std::cout << "1" << std::endl;
 	throw Exceptions::TestError();
-	std::cout << "2" << std::endl;
 }
 
-int		main(int argc, char **argv)
+void	try_catch(void)
 {
-	// std::string str = "ERROR line " + std::to_string(0) + " : " + "Test Error";
-	// std::cout << str.c_str() << std::endl;
 	try
 	{
 		exceptions_func_thrower_4000_00();
 	}
 	catch (std::exception & e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << Exceptions::ExceptionEvent::get_invalid_line_number()
+			<< e.what() << std::endl;
+	}
+}
+
+int		main(int argc, char **argv)
+{
+	for(size_t i = 0; i < 3; ++i)
+	{
+		++Exceptions::ExceptionEvent::line;
+		try_catch();
 	}
 	return (0);
 }

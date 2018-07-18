@@ -5,14 +5,14 @@
 
 namespace Exceptions
 {
-	class ErrorStatus final
+	class ExceptionEvent final
 	{
 	public:
 		static unsigned int line;
 
-		static std::string getErrorMessage(void);
+		static std::string	get_invalid_line_number(void);
 	private:
-		ErrorStatus(void){}
+		ExceptionEvent(void){}
 	};
 
 	class TestError: public std::exception

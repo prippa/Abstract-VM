@@ -1,14 +1,13 @@
 #include "../includes/Exceptions.namespace.hpp"
 
-unsigned int Exceptions::ErrorStatus::line = 0;
+unsigned int Exceptions::ExceptionEvent::line = 0;
 
-std::string	Exceptions::ErrorStatus::getErrorMessage(void)
+std::string	Exceptions::ExceptionEvent::get_invalid_line_number(void)
 {
-	return ("ERROR line " + std::to_string(line) + " : ");
+	return ("ERROR in Line " + std::to_string(line) + " : ");
 }
 
 const char	*Exceptions::TestError::what(void) const throw()
 {
-	return (static_cast<std::string>(Exceptions::ErrorStatus::getErrorMessage()
-		+ "TestsError").c_str());
+	return ("Test Error");
 }
