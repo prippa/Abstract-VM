@@ -17,7 +17,7 @@ int		main(int argc, char **argv)
 		}
 		base.bs_run_calculator();
 	}
-	catch (std::exception &e)
+	catch (const std::exception & e)
 	{
 		std::cout << e.what() << std::endl;
 	}

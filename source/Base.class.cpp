@@ -3,35 +3,30 @@
 void	Base::bs_read_from_input(void)
 {
 	for (std::string line; (std::getline(std::cin, line) && line != ";;");)
-		str_.push_back(line);
+	{
+		if (!line.empty() && !std::all_of(line.begin(), line.end(), isspace))
+			str_.push_back(line);
+	}
 }
 
 void	Base::bs_read_from_file(char *file_name)
 {
 	std::ifstream ifs;
 
-	// ifs.exceptions(std::ifstream::badbit | std::ifstream::failbit);
-	// try
-	// {
-		ifs.open(file_name);
-	// }
-	// catch (std::exception & e)
-	// {
-	// 	std::cout << e.what() << std::endl;
-	// 	// throw Exceptions::FileOpen();
-	// }
-	ifs.seekg(0, std::ios::end);
-	if (!ifs.is_open() || !ifs.good())
+	ifs.open(file_name);
+	if (!ifs.is_open())
 		throw Exceptions::FileOpen();
 	for (std::string line; std::getline(ifs, line);)
 	{
-		std::cout << line << std::endl;
+		if (!line.empty() && !std::all_of(line.begin(), line.end(), isspace))
+			str_.push_back(line);
 	}
 	ifs.close();
 }
 
 void	Base::bs_run_calculator(void)
 {
+	std::cout << str_.size() << std::endl;
 	for (auto i = str_.begin(); i != str_.end(); ++i)
 		std::cout << *i << std::endl;
 }
