@@ -15,7 +15,8 @@ int		main(int argc, char **argv)
 			std::cout << "Incorrect Use!" << std::endl;
 			return (-1);
 		}
-		base.bs_run_calculator();
+		if (base.bs_is_valid_data())
+			base.bs_run_calculator();
 	}
 	catch (const std::exception & e)
 	{

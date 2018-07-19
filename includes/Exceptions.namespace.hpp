@@ -5,17 +5,27 @@
 
 namespace Exceptions
 {
-	class ExceptionEvent final
-	{
-	public:
-		static unsigned int line;
-
-		static std::string	get_invalid_line_number(void);
-	private:
-		ExceptionEvent(void){}
-	};
+	extern unsigned int line;
 
 	class FileOpen: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		FileOpen(std::string const & file_name);
+		const char	*what(void) const throw();
+	};
+
+	class SyntaxError: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		SyntaxError(std::string const & line, std::string const & str);
+		const char	*what(void) const throw();
+	};
+
+	class NoExitCommandError: public std::exception
 	{
 	public:
 		const char	*what(void) const throw();
