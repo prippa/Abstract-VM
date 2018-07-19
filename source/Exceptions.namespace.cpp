@@ -7,7 +7,7 @@ std::string	Exceptions::ExceptionEvent::get_invalid_line_number(void)
 	return ("ERROR in Line " + std::to_string(line) + " : ");
 }
 
-const char	*Exceptions::TestError::what(void) const throw()
+const char	*Exceptions::FileOpen::what(void) const throw()
 {
-	return ("Test Error");
+	return ("File open Error");
 }

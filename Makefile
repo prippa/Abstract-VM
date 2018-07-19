@@ -6,9 +6,9 @@ DIR_INC		=	./includes/
 DIR_SRC		=	./source/
 DIR_OBJ		= 	./obj/
 
-HEAD_AVM	=	IOperand.interface.hpp Exceptions.namespace.hpp
+HEAD_AVM	=	IOperand.interface.hpp Exceptions.namespace.hpp Base.class.hpp
 
-SRC_AVM		=	main.cpp Exceptions.namespace.cpp
+SRC_AVM		=	main.cpp Exceptions.namespace.cpp Base.class.cpp
 
 INC_PATH 	= 	$(addprefix $(DIR_INC), $(HEAD_AVM))
 

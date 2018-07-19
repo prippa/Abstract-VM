@@ -1,30 +1,25 @@
-#include "../includes/Exceptions.namespace.hpp"
-#include "../includes/IOperand.interface.hpp"
-
-void	exceptions_func_thrower_4000_00(void)
-{
-	throw Exceptions::TestError();
-}
-
-void	try_catch(void)
-{
-	try
-	{
-		exceptions_func_thrower_4000_00();
-	}
-	catch (std::exception & e)
-	{
-		std::cout << Exceptions::ExceptionEvent::get_invalid_line_number()
-			<< e.what() << std::endl;
-	}
-}
+#include "../includes/Base.class.hpp"
 
 int		main(int argc, char **argv)
 {
-	for(size_t i = 0; i < 3; ++i)
+	Base base;
+
+	try
 	{
-		++Exceptions::ExceptionEvent::line;
-		try_catch();
+		if (argc == 1)
+			base.bs_read_from_input();
+		else if (argc == 2)
+			base.bs_read_from_file(argv[1]);
+		else
+		{
+			std::cout << "Incorrect Use!" << std::endl;
+			return (-1);
+		}
+		base.bs_run_calculator();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what() << std::endl;
 	}
 	return (0);
 }

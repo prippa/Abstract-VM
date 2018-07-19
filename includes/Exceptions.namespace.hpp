@@ -15,7 +15,7 @@ namespace Exceptions
 		ExceptionEvent(void){}
 	};
 
-	class TestError: public std::exception
+	class FileOpen: public std::exception
 	{
 	public:
 		const char	*what(void) const throw();
