@@ -41,10 +41,10 @@ bool	Base::bs_parser(std::string const & str)
 	++Exceptions::line;
 	if (str.empty() || std::all_of(str.begin(), str.end(), isspace))
 		return (true);
+	std::cmatch result;
 	std::regex comment(REGEX_COMMENT_ALWAYS);
 	std::regex cmd(REGEX_CMD REGEX_COMMENT_NOT_ALWAYS);
-	std::cmatch result;
-
+	std::regex cmd_with_value(REGEX_CMD_WITH_VALUE REGEX_COMMENT_NOT_ALWAYS);
 	if (std::regex_match(str.c_str(), comment))
 		return (true);
 	else if (std::regex_match(str.c_str(), result, cmd))
@@ -56,6 +56,8 @@ bool	Base::bs_parser(std::string const & str)
 		}
 		return (true);
 	}
+	else if (std::regex_match(str.c_str(), cmd_with_value))
+		return (true);
 	else
 	{
 		is_valid_data_ = false;
