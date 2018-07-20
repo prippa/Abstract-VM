@@ -41,8 +41,26 @@ bool	Base::bs_parser(std::string const & str)
 	++Exceptions::line;
 	if (str.empty() || std::all_of(str.begin(), str.end(), isspace))
 		return (true);
-	throw Exceptions::SyntaxError(std::to_string(Exceptions::line), str);
-	
+	std::regex comment(REGEX_COMMENT_ALWAYS);
+	std::regex cmd(REGEX_CMD REGEX_COMMENT_NOT_ALWAYS);
+	std::cmatch result;
+
+	if (std::regex_match(str.c_str(), comment))
+		return (true);
+	else if (std::regex_match(str.c_str(), result, cmd))
+	{
+		if (result[REGEX_CMD_INDEX] == "exit")
+		{
+			is_exit_command_ = true;
+			return (false);
+		}
+		return (true);
+	}
+	else
+	{
+		is_valid_data_ = false;
+		throw Exceptions::SyntaxError(std::to_string(Exceptions::line), str);
+	}
 	return (true);
 }
 
@@ -50,7 +68,7 @@ bool	Base::bs_is_valid_data(void) { return (is_valid_data_); }
 
 void	Base::bs_run_calculator(void)
 {
-	
+	std::cout << "RUN CALCUL" << std::endl;
 }
 
 Base	&Base::operator=(Base const & obj)

@@ -7,6 +7,13 @@
 # include <algorithm>
 # include <fstream>
 # include <list>
+# include <regex>
+
+# define REGEX_CMD_INDEX 2
+# define REGEX_COMMENT_ALWAYS "((;)(.*))"
+# define REGEX_COMMENT_NOT_ALWAYS "(((;)(.*))|([]{0,0}))"
+# define REGEX_CMD "([\\s]*)((pop)|(dump)|(add)|(sub)|(mul)|(div)|(mod)|(print)|(exit))([\\s]*)"
+# define REGEX_CMD_WITH_VALUE
 
 class Base
 {

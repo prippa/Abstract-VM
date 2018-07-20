@@ -13,4 +13,4 @@ const char	*Exceptions::SyntaxError::what(void) const throw()
 { return (error_.c_str()); }
 
 const char	*Exceptions::NoExitCommandError::what(void) const throw()
-{ return ("No \"exit\" command Error"); }
+{ return ("ERROR: no \"exit\" command"); }
