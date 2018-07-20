@@ -8,14 +8,7 @@
 # include <fstream>
 # include <list>
 # include <regex>
-
-# define REGEX_CMD_INDEX 2
-# define REGEX_SPACES "([\\s]*)"
-# define REGEX_COMMENT_ALWAYS "((;)(.*))"
-# define REGEX_COMMENT_NOT_ALWAYS "(((;)(.*))|([]{0,0}))"
-# define REGEX_CMD REGEX_SPACES "((pop)|(dump)|(add)|(sub)|(mul)|(div)|(mod)|(print)|(exit))" REGEX_SPACES
-# define REGEX_NUM "(\\()(([\\d]*)|(([\\d]*)|(([\\d]*)(\\.)[\\d]*)))(\\))"
-# define REGEX_CMD_WITH_VALUE REGEX_SPACES "((push)|(assert))" REGEX_SPACES "((int8)|(int16)|(int32)|(float)|(double))" REGEX_NUM REGEX_SPACES
+# include "../includes/Regex.macroses.hpp"
 
 class Base
 {

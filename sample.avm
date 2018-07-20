@@ -2,12 +2,12 @@
 ; sample.avm -
 ; -------------
 	
-push int32(42) ;
-push int32(33);asda34#$$ q
+push int32(+1);)
+push int32(-33);asda34#$$ q
 add
-push float(44.55)	 	;asda34#$$ q 
+push      float(44.55)	 	;asda34#$$ q 
  mul;123asd!@# 	123aa
-push double(42.42)
+push double(42.4244444444444444444444444444444444444444444444444444444444444444444444444444444444)
 push int32(42) 
   	dump 	
 	pop 	;123asd!@# 	123aa

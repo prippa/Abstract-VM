@@ -43,11 +43,9 @@ bool	Base::bs_parser(std::string const & str)
 		return (true);
 	std::cmatch result;
 	std::regex comment(REGEX_COMMENT_ALWAYS);
-	std::regex cmd(REGEX_CMD REGEX_COMMENT_NOT_ALWAYS);
-	std::regex cmd_with_value(REGEX_CMD_WITH_VALUE REGEX_COMMENT_NOT_ALWAYS);
-	if (std::regex_match(str.c_str(), comment))
-		return (true);
-	else if (std::regex_match(str.c_str(), result, cmd))
+	std::regex cmd(REGEX_CMD);
+	std::regex cmd_with_value(REGEX_CMD_WITH_VALUE);
+	if (std::regex_match(str.c_str(), result, cmd))
 	{
 		if (result[REGEX_CMD_INDEX] == "exit")
 		{
@@ -56,14 +54,14 @@ bool	Base::bs_parser(std::string const & str)
 		}
 		return (true);
 	}
-	else if (std::regex_match(str.c_str(), cmd_with_value))
+	else if (std::regex_match(str.c_str(), comment)
+		|| std::regex_match(str.c_str(), cmd_with_value))
 		return (true);
 	else
 	{
 		is_valid_data_ = false;
 		throw Exceptions::SyntaxError(std::to_string(Exceptions::line), str);
 	}
-	return (true);
 }
 
 bool	Base::bs_is_valid_data(void) { return (is_valid_data_); }

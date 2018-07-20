@@ -6,7 +6,8 @@ DIR_INC		=	./includes/
 DIR_SRC		=	./source/
 DIR_OBJ		= 	./obj/
 
-HEAD_AVM	=	IOperand.interface.hpp Exceptions.namespace.hpp Base.class.hpp
+HEAD_AVM	=	IOperand.interface.hpp Exceptions.namespace.hpp Base.class.hpp\
+				Regex.macroses.hpp
 
 SRC_AVM		=	main.cpp Exceptions.namespace.cpp Base.class.cpp
 
