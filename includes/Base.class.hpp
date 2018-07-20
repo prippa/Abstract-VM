@@ -15,11 +15,11 @@ private:
 	bool	is_valid_data_;
 	bool	is_exit_command_;
 
-	bool	bs_valid_str(std::string const & str);
 	bool	bs_parser(std::string const & str);
 public:
 	void	bs_read_from_input(void);
 	void	bs_read_from_file(char *file_name);
+	void	bs_valid_str(void);
 	void	bs_run_calculator(void);
 
 	bool	bs_is_valid_data(void);

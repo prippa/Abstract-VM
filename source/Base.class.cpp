@@ -4,11 +4,6 @@ void	Base::bs_read_from_input(void)
 {
 	for (std::string line; (std::getline(std::cin, line) && line != ";;");)
 		str_.push_back(line);
-	for (auto i = str_.begin(); i != str_.end(); ++i)
-		if (!bs_valid_str(*i))
-			break;
-	if (!is_exit_command_)
-		throw Exceptions::NoExitCommandError();
 }
 
 void	Base::bs_read_from_file(char *file_name)
@@ -19,39 +14,35 @@ void	Base::bs_read_from_file(char *file_name)
 	if (!ifs.is_open())
 		throw Exceptions::FileOpen(file_name);
 	for (std::string line; std::getline(ifs, line);)
-		if (!bs_valid_str(line))
-			break;
+		str_.push_back(line);
 	ifs.close();
-	if (!is_exit_command_)
-		throw Exceptions::NoExitCommandError();
 }
 
-bool	Base::bs_valid_str(std::string const & str)
+void	Base::bs_valid_str(void)
 {
-	try
+	for (auto i = str_.begin(); i != str_.end(); ++i)
 	{
-		return (bs_parser(str));
+		try
+		{
+			if (!bs_parser(*i))
+				break;
+		}
+		catch (const std::exception &e)
+		{
+			std::cout << e.what() << std::endl;
+		}
 	}
-	catch (const std::exception &e)
-	{
-		std::cout << e.what() << std::endl;
-	}
-	return (true);
+	if (!is_exit_command_)
+		throw Exceptions::NoExitCommandError();
 }
 
 bool	Base::bs_parser(std::string const & str)
 {
 	++Exceptions::line;
+	if (str.empty() || std::all_of(str.begin(), str.end(), isspace))
+		return (true);
 	throw Exceptions::SyntaxError(std::to_string(Exceptions::line), str);
-	// std::cout << "Line  : " << Exceptions::ExceptionEvent::line << " : "
-	// 	<< str << std::endl;
-	// if (!line.empty() && !std::all_of(line.begin(), line.end(), isspace))
-	// std::cout << str_.size() << std::endl;
-	// for (auto i = str_.begin(); i != str_.end(); ++i)
-	// {
-
-	// 	std::cout << *i << std::endl;
-	// }
+	
 	return (true);
 }
 
