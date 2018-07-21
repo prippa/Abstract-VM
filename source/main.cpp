@@ -1,6 +1,6 @@
 #include "../includes/Base.class.hpp"
 
-int		main(int argc, char **argv)
+int		main2(int argc, char **argv)
 {
 	Base base;
 
@@ -23,5 +23,12 @@ int		main(int argc, char **argv)
 	{
 		std::cout << e.what() << std::endl;
 	}
+	return (0);
+}
+
+int main(int argc, char **argv)
+{
+	main2(argc, argv);
+	system("leaks -q avm");
 	return (0);
 }
