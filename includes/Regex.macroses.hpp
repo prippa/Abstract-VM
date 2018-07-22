@@ -6,7 +6,7 @@
 # define REGEX_SPACES_ALWAYS "[\\s]+"
 # define REGEX_COMMENT_ALWAYS ";.*"
 # define REGEX_COMMENT_NOT_ALWAYS "(;.*|[]{0,0})"
-# define REGEX_NUM "[(](([-]?|[+]?)([\\d]+|[\\d]+[.]?[\\d]+))[)]"
+# define REGEX_NUM "[(](([-]?|[+]?)([\\d]+|[\\d]+.[\\d]+))[)]"
 
 # define REGEX_CMD REGEX_SPACES_NOT_ALWAYS\
 	"(pop|dump|add|sub|mul|div|mod|print|exit)"\
