@@ -3,6 +3,8 @@
 
 # include <iostream>
 
+# define VALUE_SIZE 5
+
 enum	eOperandType {Int8, Int16, Int32, Float, Double};
 
 class IOperand

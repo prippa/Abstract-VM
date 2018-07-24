@@ -7,9 +7,10 @@ DIR_SRC		=	./source/
 DIR_OBJ		= 	./obj/
 
 HEAD_AVM	=	IOperand.interface.hpp Exceptions.namespace.hpp Base.class.hpp\
-				Regex.macroses.hpp
+				Regex.macroses.hpp Operand.class.hpp Factory.class.hpp
 
-SRC_AVM		=	main.cpp Exceptions.namespace.cpp Base.class.cpp
+SRC_AVM		=	main.cpp Exceptions.namespace.cpp Base.class.cpp\
+				Factory.class.cpp
 
 INC_PATH 	= 	$(addprefix $(DIR_INC), $(HEAD_AVM))
 

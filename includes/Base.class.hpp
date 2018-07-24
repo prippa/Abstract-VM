@@ -9,13 +9,24 @@
 # include <list>
 # include <regex>
 # include "../includes/Regex.macroses.hpp"
+# include "../includes/Factory.class.hpp"
 
 class Base
 {
 private:
 	std::list<std::string>	str_;
+	
 	bool	is_valid_data_;
 	bool	is_exit_command_;
+
+	std::cmatch			result_;
+	const std::regex	comment_;
+	const std::regex	cmd_;
+	const std::regex	cmd_with_value_;
+
+	Factory	create;
+
+	std::list<const IOperand*>	stack_;
 
 	bool	bs_parser(std::string const & str);
 public:

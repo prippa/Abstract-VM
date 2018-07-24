@@ -3,7 +3,7 @@
 ; -------------
 
 push int8(-42)
-push int16(18)
+push int16(+18)
 assert double(+42.0000000000)	;Hi
 print
 exit

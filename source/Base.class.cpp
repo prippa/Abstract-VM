@@ -41,21 +41,17 @@ bool	Base::bs_parser(std::string const & str)
 	++Exceptions::line;
 	if (str.empty() || std::all_of(str.begin(), str.end(), isspace))
 		return (true);
-	std::cmatch result;
-	std::regex comment(REGEX_COMMENT_ALWAYS);
-	std::regex cmd(REGEX_CMD);
-	std::regex cmd_with_value(REGEX_CMD_WITH_VALUE);
-	if (std::regex_match(str.c_str(), result, cmd))
+	if (std::regex_match(str.c_str(), result_, cmd_))
 	{
-		if (result[REGEX_CMD_INDEX] == "exit")
+		if (result_[REGEX_CMD_INDEX] == "exit")
 		{
 			is_exit_command_ = true;
 			return (false);
 		}
 		return (true);
 	}
-	else if (std::regex_match(str.c_str(), comment)
-		|| std::regex_match(str.c_str(), cmd_with_value))
+	else if (std::regex_match(str.c_str(), comment_)
+		|| std::regex_match(str.c_str(), cmd_with_value_))
 		return (true);
 	else
 	{
@@ -79,6 +75,7 @@ Base	&Base::operator=(Base const & obj)
 }
 Base::Base(Base const & obj) { *this = obj; }
 Base::Base(void)
+: comment_(REGEX_COMMENT_ALWAYS), cmd_(REGEX_CMD), cmd_with_value_(REGEX_CMD_WITH_VALUE)
 {
 	is_valid_data_ = true;
 	is_exit_command_ = false;
