@@ -2,10 +2,10 @@
 # define IOPERAND_INTERFACE_HPP
 
 # include <iostream>
+# include <stdint.h>
+# include <float.h>
 
-# define VALUE_SIZE 5
-
-enum	eOperandType {Int8, Int16, Int32, Float, Double};
+enum	eOperandType {Int8, Int16, Int32, Float, Double, TYPE_SIZE};
 
 class IOperand
 {

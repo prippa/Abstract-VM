@@ -2,6 +2,21 @@
 
 int		main2(int argc, char **argv)
 {
+	// int a;
+	// short n;
+	// try
+	// {
+	// 	a = std::stoi("100000");
+	// 	std::numeric_limits<short>::min(a);
+	// }
+	// catch (const std::exception & e)
+	// {
+	// 	std::cout << "error" << std::endl;
+	// 	std::cout << e.what() << std::endl;
+	// }
+	// std::cout << a << std::endl;
+	// std::cout << INT32_MIN << std::endl;
+
 	Base base;
 
 	try
@@ -21,7 +36,7 @@ int		main2(int argc, char **argv)
 	}
 	catch (const std::exception & e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << "Line " <<  Exceptions::line << " : "<< e.what() << std::endl;
 	}
 	return (0);
 }
