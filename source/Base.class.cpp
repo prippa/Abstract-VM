@@ -65,15 +65,23 @@ bool	Base::bs_is_valid_data(void) { return (is_valid_data_); }
 void	Base::bs_run_calculator(void)
 {
 	std::cout << "RUN CALCUL" << std::endl;
+	Exceptions::line = 0;
+	for (auto i = str_.begin(); i != str_.end(); ++i)
+	{
+		if (std::regex_match((*i).c_str(), result_, cmd_))
+			;
+		else if (std::regex_match((*i).c_str(), result_, cmd_with_value_))
+			;
+	}
 }
 
-Base	&Base::operator=(Base const & obj)
+Base	&Base::operator=(Base const & rhs)
 {
-	if (this != &obj)
+	if (this != &rhs)
 		;
 	return (*this);
 }
-Base::Base(Base const & obj) { *this = obj; }
+Base::Base(Base const & rhs) { *this = rhs; }
 Base::Base(void)
 : comment_(REGEX_COMMENT_ALWAYS), cmd_(REGEX_CMD), cmd_with_value_(REGEX_CMD_WITH_VALUE)
 {

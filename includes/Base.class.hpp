@@ -10,6 +10,7 @@
 # include <regex>
 # include "../includes/Regex.macroses.hpp"
 # include "../includes/Factory.class.hpp"
+# include "CommandsExecutor.class.hpp"
 
 class Base
 {
@@ -24,9 +25,8 @@ private:
 	const std::regex	cmd_;
 	const std::regex	cmd_with_value_;
 
-	Factory	create;
-
-	std::list<const IOperand*>	stack_;
+	std::list<const IOperand *>	stack_;
+	CommandsExecutor			cmd_executor_;
 
 	bool	bs_parser(std::string const & str);
 public:
@@ -37,8 +37,8 @@ public:
 
 	bool	bs_is_valid_data(void);
 
-	Base	&operator=(Base const & obj);
-	Base(Base const & obj);
+	Base	&operator=(Base const & rhs);
+	Base(Base const & rhs);
 	Base(void);
 	~Base(void);
 };

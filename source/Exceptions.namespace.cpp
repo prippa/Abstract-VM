@@ -14,3 +14,13 @@ const char	*Exceptions::SyntaxError::what(void) const throw()
 
 const char	*Exceptions::NoExitCommandError::what(void) const throw()
 { return ("ERROR: no \"exit\" command"); }
+
+Exceptions::OverflowError::OverflowError(std::string const & str)
+{ error_ = "Overflow on a \"" + str + "\""; }
+const char	*Exceptions::OverflowError::what(void) const throw()
+{ return (error_.c_str()); }
+
+Exceptions::UnderflowError::UnderflowError(std::string const & str)
+{ error_ = "Underflow on a \"" + str + "\""; }
+const char	*Exceptions::UnderflowError::what(void) const throw()
+{ return (error_.c_str()); }

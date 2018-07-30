@@ -30,6 +30,24 @@ namespace Exceptions
 	public:
 		const char	*what(void) const throw();
 	};
+
+	class OverflowError: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		OverflowError(std::string const & str);
+		const char	*what(void) const throw();
+	};
+
+	class UnderflowError: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		UnderflowError(std::string const & str);
+		const char	*what(void) const throw();
+	};
 };
 
 #endif

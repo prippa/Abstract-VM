@@ -18,8 +18,8 @@ private:
 public:
 	IOperand const	*createOperand(eOperandType type, std::string const & value) const;
 
-	Factory	&operator=(Factory const & obj);
-	Factory(Factory const & obj);
+	Factory	&operator=(Factory const & rhs);
+	Factory(Factory const & rhs);
 	Factory(void);
 	~Factory(void);
 };
