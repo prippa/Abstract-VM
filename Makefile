@@ -1,6 +1,6 @@
 NAME		=	avm
 # FLAGS		= 	-Wall -Werror -Wextra
-COMPILER	=	g++ -std=c++11
+COMPILER	=	g++ -std=c++11 -g
 
 DIR_INC		=	./includes/
 DIR_SRC		=	./source/

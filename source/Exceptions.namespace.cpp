@@ -1,6 +1,6 @@
 #include "../includes/Exceptions.namespace.hpp"
 
-unsigned int Exceptions::line = 0;
+unsigned int Exceptions::line = 1;
 
 Exceptions::FileOpen::FileOpen(std::string const & file_name)
 { error_ = "Open File Error - \"" + file_name + "\""; }

@@ -83,17 +83,17 @@ CommandsExecutor::CommandsExecutor(void)
 	type_.emplace(TP_FLOAT, Float);
 	type_.emplace(TP_DOUBLE, Double);
 
-	cmd_.emplace(CM_POP, ce_pop);
-	cmd_.emplace(CM_DUMP, ce_dump);
-	cmd_.emplace(CM_ADD, ce_add);
-	cmd_.emplace(CM_SUB, ce_sub);
-	cmd_.emplace(CM_MUL, ce_mul);
-	cmd_.emplace(CM_DIV, ce_div);
-	cmd_.emplace(CM_MOD, ce_mod);
-	cmd_.emplace(CM_PRINT, ce_print);
-	cmd_.emplace(CM_EXIT, ce_exit);
+	cmd_.emplace(CM_POP, &CommandsExecutor::ce_pop);
+	cmd_.emplace(CM_DUMP, &CommandsExecutor::ce_dump);
+	cmd_.emplace(CM_ADD, &CommandsExecutor::ce_add);
+	cmd_.emplace(CM_SUB, &CommandsExecutor::ce_sub);
+	cmd_.emplace(CM_MUL, &CommandsExecutor::ce_mul);
+	cmd_.emplace(CM_DIV, &CommandsExecutor::ce_div);
+	cmd_.emplace(CM_MOD, &CommandsExecutor::ce_mod);
+	cmd_.emplace(CM_PRINT, &CommandsExecutor::ce_print);
+	cmd_.emplace(CM_EXIT, &CommandsExecutor::ce_exit);
 
-	cmd_.emplace(CM_PUSH, ce_push);
-	cmd_.emplace(CM_ASSERT, ce_assert);
+	cmd_.emplace(CM_PUSH, &CommandsExecutor::ce_push);
+	cmd_.emplace(CM_ASSERT, &CommandsExecutor::ce_assert);
 }
 CommandsExecutor::~CommandsExecutor(void) {}

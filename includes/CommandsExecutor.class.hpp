@@ -14,8 +14,6 @@ private:
 	const Factory	fac_;
 	std::map<std::string, eOperandType>								type_;
 	std::map<std::string, void (CommandsExecutor::*)(Base & bs)>	cmd_;
-public:
-	void	ce_execute_command(Base & bs);
 
 	void	ce_pop(Base & bs);
 	void	ce_dump(Base & bs);
@@ -29,6 +27,8 @@ public:
 
 	void	ce_push(Base & bs);
 	void	ce_assert(Base & bs);
+public:
+	void	ce_execute_command(Base & bs);
 
 	CommandsExecutor	&operator=(CommandsExecutor const & rhs);
 	CommandsExecutor(CommandsExecutor const & rhs);
