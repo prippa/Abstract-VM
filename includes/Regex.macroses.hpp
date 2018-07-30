@@ -1,7 +1,28 @@
 #ifndef REGEX_MACROSES_HPP
 # define REGEX_MACROSES_HPP
 
+# define CM_POP "pop"
+# define CM_DUMP "dump"
+# define CM_ADD "add"
+# define CM_SUB "sub"
+# define CM_MUL "mul"
+# define CM_DIV "div"
+# define CM_MOD "mod"
+# define CM_PRINT "print"
+# define CM_EXIT "exit"
+
+# define CM_PUSH "push"
+# define CM_ASSERT "assert"
+
+# define TP_INT8 "int8"
+# define TP_INT16 "int16"
+# define TP_INT32 "int32"
+# define TP_FLOAT "float"
+# define TP_DOUBLE "double"
+
 # define REGEX_CMD_INDEX 1
+# define REGEX_TYPE_INDEX 2
+# define REGEX_VALUE_INDEX 3
 # define REGEX_SPACES_NOT_ALWAYS "[\\s]*"
 # define REGEX_SPACES_ALWAYS "[\\s]+"
 # define REGEX_COMMENT_ALWAYS ";.*"
@@ -9,14 +30,14 @@
 # define REGEX_NUM "[(](([-]?|[+]?)([\\d]+|[\\d]+.[\\d]+))[)]"
 
 # define REGEX_CMD REGEX_SPACES_NOT_ALWAYS\
-	"(pop|dump|add|sub|mul|div|mod|print|exit)"\
+	"(" CM_POP "|" CM_DUMP "|" CM_ADD "|" CM_SUB "|" CM_MUL "|" CM_DIV "|" CM_MOD "|" CM_PRINT "|" CM_EXIT ")"\
 	REGEX_SPACES_NOT_ALWAYS\
 	REGEX_COMMENT_NOT_ALWAYS
 
 # define REGEX_CMD_WITH_VALUE REGEX_SPACES_NOT_ALWAYS\
-	"(push|assert)"\
+	"(" CM_PUSH "|" CM_ASSERT ")"\
 	REGEX_SPACES_ALWAYS\
-	"(int8|int16|int32|float|double)"\
+	"(" TP_INT8 "|" TP_INT16 "|" TP_INT32 "|" TP_FLOAT "|" TP_DOUBLE ")"\
 	REGEX_NUM\
 	REGEX_SPACES_NOT_ALWAYS\
 	REGEX_COMMENT_NOT_ALWAYS

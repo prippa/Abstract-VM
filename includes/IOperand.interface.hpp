@@ -2,6 +2,7 @@
 # define IOPERAND_INTERFACE_HPP
 
 # include <iostream>
+# include <string>
 # include <stdint.h>
 # include <float.h>
 

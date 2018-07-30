@@ -1,4 +1,9 @@
 #include "../includes/Base.class.hpp"
+#include "../includes/Exceptions.namespace.hpp"
+#include "../includes/Regex.macroses.hpp"
+#include "../includes/Operand.template.hpp"
+#include <algorithm>
+#include <fstream>
 
 void	Base::bs_read_from_input(void)
 {
@@ -68,10 +73,15 @@ void	Base::bs_run_calculator(void)
 	Exceptions::line = 0;
 	for (auto i = str_.begin(); i != str_.end(); ++i)
 	{
-		if (std::regex_match((*i).c_str(), result_, cmd_))
-			;
-		else if (std::regex_match((*i).c_str(), result_, cmd_with_value_))
-			;
+		if (std::regex_match((*i).c_str(), result_, cmd_)
+			|| std::regex_match((*i).c_str(), result_, cmd_with_value_))
+			cmd_executor_.ce_execute_command(*this);
+		++Exceptions::line;
+	}
+
+	for (auto i = stack_.begin(); i != stack_.end(); ++i)
+	{
+		std::cout << (*i)->toString() << std::endl;
 	}
 }
 

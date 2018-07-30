@@ -1,8 +1,8 @@
 #ifndef OPERAND_TEMPLATE_HPP
 # define OPERAND_TEMPLATE_HPP
 
-# include "IOperand.interface.hpp"
 # include "Factory.class.hpp"
+# include <string>
 
 template<typename T>
 class Operand : public IOperand

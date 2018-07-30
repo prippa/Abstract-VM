@@ -1,19 +1,16 @@
 #ifndef BASE_CLASS_HPP
 # define BASE_CLASS_HPP
 
-# include "../includes/Exceptions.namespace.hpp"
+# include "IOperand.interface.hpp"
+# include "CommandsExecutor.class.hpp"
 # include <iostream>
 # include <string>
-# include <algorithm>
-# include <fstream>
 # include <list>
 # include <regex>
-# include "../includes/Regex.macroses.hpp"
-# include "../includes/Factory.class.hpp"
-# include "CommandsExecutor.class.hpp"
 
 class Base
 {
+	friend class CommandsExecutor;
 private:
 	std::list<std::string>	str_;
 	

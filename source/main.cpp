@@ -1,4 +1,5 @@
 #include "../includes/Base.class.hpp"
+#include "../includes/Exceptions.namespace.hpp"
 
 int		main2(int argc, char **argv)
 {
