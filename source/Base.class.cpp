@@ -71,19 +71,18 @@ void	Base::bs_run_calculator(void)
 {
 	std::cout << "RUN CALCUL" << std::endl;
 	Exceptions::line = 1;
-	for (auto i = str_.begin(); i != str_.end(); ++i)
+	for (auto i = str_.begin(); (i != str_.end() && is_exit_command_); ++i)
 	{
 		if (std::regex_match((*i).c_str(), result_, cmd_)
 			|| std::regex_match((*i).c_str(), result_, cmd_with_value_))
 			cmd_executor_.ce_execute_command(*this);
 		++Exceptions::line;
 	}
-
 	//test
-	for (auto i = stack_.begin(); i != stack_.end(); ++i)
-	{
-		std::cout << (*i)->toString() << std::endl;
-	}
+	// for (auto i = stack_.begin(); i != stack_.end(); ++i)
+	// {
+	// 	std::cout << (*i)->toString() << std::endl;
+	// }
 	//
 }
 

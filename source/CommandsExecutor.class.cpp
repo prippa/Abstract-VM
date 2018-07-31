@@ -1,41 +1,92 @@
 #include "../includes/CommandsExecutor.class.hpp"
 #include "../includes/Base.class.hpp"
 #include "../includes/Regex.macroses.hpp"
+#include "../includes/Exceptions.namespace.hpp"
 
 // --------------------------- Commands Without Value --------------------------
 void	CommandsExecutor::ce_pop(Base & bs)
 {
-
+	if (bs.stack_.empty())
+		throw Exceptions::EmptyStackError(bs.result_[REGEX_CMD_INDEX]);
+	const IOperand *tmp = bs.stack_.back();
+	bs.stack_.pop_back();
+	delete tmp;
 }
 
 void	CommandsExecutor::ce_dump(Base & bs)
 {
-
+	for (auto i = bs.stack_.rbegin(); i != bs.stack_.rend(); ++i)
+		std::cout << (*i)->toString() << std::endl;
 }
 
 void	CommandsExecutor::ce_add(Base & bs)
 {
-
+	if (bs.stack_.size() < CE_MINIMUM_ARGS)
+		throw Exceptions::NotEnoughArgumentsError();
+	const IOperand *left = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *right = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *res = *left + *right;
+	bs.stack_.push_back(res);
+	delete left;
+	delete right;
 }
 
 void	CommandsExecutor::ce_sub(Base & bs)
 {
-
+	if (bs.stack_.size() < CE_MINIMUM_ARGS)
+		throw Exceptions::NotEnoughArgumentsError();
+	const IOperand *left = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *right = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *res = *left - *right;
+	bs.stack_.push_back(res);
+	delete left;
+	delete right;
 }
 
 void	CommandsExecutor::ce_mul(Base & bs)
 {
-
+	if (bs.stack_.size() < CE_MINIMUM_ARGS)
+		throw Exceptions::NotEnoughArgumentsError();
+	const IOperand *left = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *right = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *res = *left * *right;
+	bs.stack_.push_back(res);
+	delete left;
+	delete right;
 }
 
 void	CommandsExecutor::ce_div(Base & bs)
 {
-
+	if (bs.stack_.size() < CE_MINIMUM_ARGS)
+		throw Exceptions::NotEnoughArgumentsError();
+	const IOperand *left = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *right = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *res = *left / *right;
+	bs.stack_.push_back(res);
+	delete left;
+	delete right;
 }
 
 void	CommandsExecutor::ce_mod(Base & bs)
 {
-
+	if (bs.stack_.size() < CE_MINIMUM_ARGS)
+		throw Exceptions::NotEnoughArgumentsError();
+	const IOperand *left = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *right = bs.stack_.back();
+	bs.stack_.pop_back();
+	const IOperand *res = *left % *right;
+	bs.stack_.push_back(res);
+	delete left;
+	delete right;
 }
 
 void	CommandsExecutor::ce_print(Base & bs)
@@ -45,7 +96,7 @@ void	CommandsExecutor::ce_print(Base & bs)
 
 void	CommandsExecutor::ce_exit(Base & bs)
 {
-
+	bs.is_exit_command_ = false;
 }
 // -----------------------------------------------------------------------------
 
@@ -60,7 +111,20 @@ void	CommandsExecutor::ce_push(Base & bs)
 
 void	CommandsExecutor::ce_assert(Base & bs)
 {
-
+	if (bs.stack_.empty())
+		throw Exceptions::EmptyStackError(bs.result_[REGEX_CMD_INDEX]);
+	const IOperand *right = fac_.createOperand(
+		type_[bs.result_[REGEX_TYPE_INDEX]],
+		bs.result_[REGEX_VALUE_INDEX]);
+	const IOperand *left = bs.stack_.back();
+	if (*right == *left)
+		delete right;
+	else
+	{
+		std::string right_str = right->toString();
+		delete right;
+		throw Exceptions::AssertError(right_str, left->toString());
+	}
 }
 // -----------------------------------------------------------------------------
 void	CommandsExecutor::ce_execute_command(Base & bs)

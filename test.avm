@@ -1,9 +1,12 @@
-; -------------
-; sample.avm -
-; -------------
-
-push int8(0)
-push int16(+182322)
-assert double(+42.0000000000)	;Hi
-print
+push int32(42)
+push int32(33)
+add ;poney
+push float(44.55)
+mul
+push double(42.42)
+;commentaire de ouf
+push int32(42)
+dump
+pop
+assert double(42.42)
 exit

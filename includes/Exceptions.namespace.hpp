@@ -2,6 +2,7 @@
 # define EXCEPTIONS_NAMESPACE_HPP
 
 # include <iostream>
+# include <string>
 
 namespace Exceptions
 {
@@ -46,6 +47,30 @@ namespace Exceptions
 		std::string	error_;
 	public:
 		UnderflowError(std::string const & str);
+		const char	*what(void) const throw();
+	};
+
+	class NotEnoughArgumentsError: public std::exception
+	{
+	public:
+		const char	*what(void) const throw();
+	};
+
+	class AssertError: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		AssertError(std::string const & right, std::string const & left);
+		const char	*what(void) const throw();
+	};
+
+	class EmptyStackError: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		EmptyStackError(std::string const & cmd);
 		const char	*what(void) const throw();
 	};
 };

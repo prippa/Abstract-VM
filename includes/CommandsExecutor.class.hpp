@@ -6,6 +6,8 @@
 # include <string>
 # include <map>
 
+# define CE_MINIMUM_ARGS 2
+
 class Base;
 
 class CommandsExecutor
