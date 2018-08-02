@@ -1,9 +1,0 @@
-; -------------
-; exemple.avm -
-; -------------
-
-push int32(42)
-push int32(33)
-push float(44.55)
-dump
-exit
