@@ -27,12 +27,14 @@ private:
 		else if (typeid(float) == typeid(T)) { type_ = Float; precision_ = 7; }
 		else { type_ = Double; precision_ = 14; }
 
-		std::stringstream set(std::stringstream::out);
 		if (type_ < Float)
-			set << SC32(value_);
+			str_ = std::to_string(value_);
 		else
+		{
+			std::stringstream set(std::stringstream::out);
 			set << std::setprecision(precision_) << value_;
-		str_ = set.str();
+			str_ = set.str();
+		}
 	}
 
 	T	op_convert(std::string const & value) const
