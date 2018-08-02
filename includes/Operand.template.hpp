@@ -21,31 +21,11 @@ private:
 
 	void	op_set_types(void)
 	{
-		if (typeid(int8_t) == typeid(T))
-		{
-			type_ = Int8;
-			precision_ = 0;
-		}
-		else if (typeid(int16_t) == typeid(T))
-		{
-			type_ = Int16;
-			precision_ = 0;
-		}
-		else if (typeid(int32_t) == typeid(T))
-		{
-			type_ = Int32;
-			precision_ = 0;
-		}
-		else if (typeid(float) == typeid(T))
-		{
-			type_ = Float;
-			precision_ = 7;
-		}
-		else
-		{
-			type_ = Double;
-			precision_ = 14;
-		}
+		if (typeid(int8_t) == typeid(T)) { type_ = Int8; precision_ = 0; }
+		else if (typeid(int16_t) == typeid(T)) { type_ = Int16; precision_ = 0; }
+		else if (typeid(int32_t) == typeid(T)) { type_ = Int32; precision_ = 0; }
+		else if (typeid(float) == typeid(T)) { type_ = Float; precision_ = 7; }
+		else { type_ = Double; precision_ = 14; }
 		std::stringstream set(std::stringstream::out);
 		set << std::setprecision(precision_) << value_;
 		str_ = set.str();
