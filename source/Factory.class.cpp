@@ -71,7 +71,9 @@ IOperand const	*FactoryClass::Factory::createOperand(eOperandType type, std::str
 FactoryClass::Factory	&FactoryClass::Factory::operator=(Factory const & rhs)
 {
 	if (this != &rhs)
-		;
+	{
+		
+	}
 	return (*this);
 }
 FactoryClass::Factory::Factory(Factory const & rhs) { *this = rhs; }

@@ -82,7 +82,9 @@ void	Base::bs_run_calculator(void)
 Base	&Base::operator=(Base const & rhs)
 {
 	if (this != &rhs)
-		;
+	{
+		
+	}
 	return (*this);
 }
 Base::Base(Base const & rhs) { *this = rhs; }

@@ -245,7 +245,9 @@ void	CommandsExecutor::ce_execute_command(Base & bs)
 CommandsExecutor	&CommandsExecutor::operator=(CommandsExecutor const & rhs)
 {
 	if (this != &rhs)
-		;
+	{
+		
+	}
 	return (*this);
 }
 CommandsExecutor::CommandsExecutor(CommandsExecutor const & rhs) { *this = rhs; }
