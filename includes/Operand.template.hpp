@@ -2,6 +2,7 @@
 # define OPERAND_TEMPLATE_HPP
 
 # include "Factory.class.hpp"
+# include "Exceptions.namespace.hpp"
 # include <iostream>
 # include <string>
 # include <cmath>
@@ -9,13 +10,18 @@
 template<typename T>
 class Operand : public IOperand
 {
+	# define SC8	static_cast<int8_t>
+	# define SC16	static_cast<int16_t>
+	# define SC32	static_cast<int32_t>
+	# define SCF	static_cast<float>
+	# define SCD	static_cast<double>
 private:
-	const T				value_;
-	const std::string	str_;
-	const eOperandType	type_;
-	const Factory		fac_;
+	T				value_;
+	std::string		str_;
+	eOperandType	type_;
+	const Factory	fac_;
 
-	eOperandType	op_get_right_type(void)
+	eOperandType	op_get_right_type(void) const
 	{
 		if (typeid(int8_t) == typeid(T))
 			return (Int8);
@@ -29,15 +35,15 @@ private:
 			return (Double);
 	}
 
-	T	op_convert(eOperandType const & type, std::string const & value) const
+	T	op_convert(std::string const & value) const
 	{
-		if (type == Int8)
-			return (static_cast<int8_t>(std::stoi(value)));
-		else if (type == Int16)
-			return (static_cast<int16_t>(std::stoi(value)));
-		else if (type == Int32)
+		if (type_ == Int8)
+			return (SC8(std::stoi(value)));
+		else if (type_ == Int16)
+			return (SC16(std::stoi(value)));
+		else if (type_ == Int32)
 			return (std::stoi(value));
-		else if (type == Float)
+		else if (type_ == Float)
 			return (std::stof(value));
 		else
 			return (std::stod(value));
@@ -49,78 +55,179 @@ public:
 	Operand	&operator=(IOperand const & rhs)
 	{
 		if (this != &rhs)
-			;
+		{
+			value_ = op_convert(rhs.toString());
+			str_ = rhs.toString();
+			type_ = rhs.getType();
+		}
 		return (*this);
 	}
 	Operand(IOperand const & rhs) { *this = rhs; }
 
+	int					getPrecision(void) const { return (static_cast<int>(type_)); }
+	eOperandType		getType(void) const { return (type_); }
+	std::string const &	toString(void) const { return (str_); }
 
-	int getPrecision(void) const { return (static_cast<int>(type_)); }
-	eOperandType getType(void) const { return (type_); }
-
-
+	// ------------------------- Arithmetic Operators -------------------------
 	IOperand const * operator+(IOperand const & rhs) const
 	{
-		eOperandType e = rhs.getType();
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
 
-		return (fac_.createOperand(
-			((getPrecision() > rhs.getPrecision() ? type_ : e)),
-				std::to_string((value_ + op_convert(e, rhs.toString())))));
+		if (e == Int8)
+			return (fac_.createOperand(e, std::to_string(SC8(value_)
+				+ SC8(std::stoi(rhs.toString())))));
+		else if (e == Int16)
+			return (fac_.createOperand(e, std::to_string(SC16(value_)
+				+ SC16(std::stoi(rhs.toString())))));
+		else if (e == Int32)
+			return (fac_.createOperand(e, std::to_string(SC32(value_)
+				+ std::stoi(rhs.toString()))));
+		else if (e == Float)
+			return (fac_.createOperand(e, std::to_string(SCF(value_)
+				+ std::stof(rhs.toString()))));
+		else
+			return (fac_.createOperand(e, std::to_string(SCD(value_)
+				+ std::stod(rhs.toString()))));
 	}
 
 	IOperand const * operator-(IOperand const & rhs) const
 	{
-		eOperandType e = rhs.getType();
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
 
-		return (fac_.createOperand(
-			((getPrecision() > rhs.getPrecision() ? type_ : e)),
-				std::to_string((value_ - op_convert(e, rhs.toString())))));
+		if (e == Int8)
+			return (fac_.createOperand(e, std::to_string(SC8(value_)
+				- SC8(std::stoi(rhs.toString())))));
+		else if (e == Int16)
+			return (fac_.createOperand(e, std::to_string(SC16(value_)
+				- SC16(std::stoi(rhs.toString())))));
+		else if (e == Int32)
+			return (fac_.createOperand(e, std::to_string(SC32(value_)
+				- std::stoi(rhs.toString()))));
+		else if (e == Float)
+			return (fac_.createOperand(e, std::to_string(SCF(value_)
+				- std::stof(rhs.toString()))));
+		else
+			return (fac_.createOperand(e, std::to_string(SCD(value_)
+				- std::stod(rhs.toString()))));
 	}
 
 	IOperand const * operator*(IOperand const & rhs) const
 	{
-		eOperandType e = rhs.getType();
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
 
-		return (fac_.createOperand(
-			((getPrecision() > rhs.getPrecision() ? type_ : e)),
-				std::to_string((value_ * op_convert(e, rhs.toString())))));
+		if (e == Int8)
+			return (fac_.createOperand(e, std::to_string(SC8(value_)
+				* SC8(std::stoi(rhs.toString())))));
+		else if (e == Int16)
+			return (fac_.createOperand(e, std::to_string(SC16(value_)
+				* SC16(std::stoi(rhs.toString())))));
+		else if (e == Int32)
+			return (fac_.createOperand(e, std::to_string(SC32(value_)
+				* std::stoi(rhs.toString()))));
+		else if (e == Float)
+			return (fac_.createOperand(e, std::to_string(SCF(value_)
+				* std::stof(rhs.toString()))));
+		else
+			return (fac_.createOperand(e, std::to_string(SCD(value_)
+				* std::stod(rhs.toString()))));
 	}
 
 	IOperand const * operator/(IOperand const & rhs) const
 	{
-		eOperandType e = rhs.getType();
+		if (std::stod(rhs.toString()) == 0)
+			throw Exceptions::DivisionByZeroError();
 
-		return (fac_.createOperand(
-			((getPrecision() > rhs.getPrecision() ? type_ : e)),
-				std::to_string((value_ / op_convert(e, rhs.toString())))));
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
+
+		if (e == Int8)
+			return (fac_.createOperand(e, std::to_string(SC8(value_)
+				/ SC8(std::stoi(rhs.toString())))));
+		else if (e == Int16)
+			return (fac_.createOperand(e, std::to_string(SC16(value_)
+				/ SC16(std::stoi(rhs.toString())))));
+		else if (e == Int32)
+			return (fac_.createOperand(e, std::to_string(SC32(value_)
+				/ std::stoi(rhs.toString()))));
+		else if (e == Float)
+			return (fac_.createOperand(e, std::to_string(SCF(value_)
+				/ std::stof(rhs.toString()))));
+		else
+			return (fac_.createOperand(e, std::to_string(SCD(value_)
+				/ std::stod(rhs.toString()))));
 	}
 
 	IOperand const * operator%(IOperand const & rhs) const
 	{
-		eOperandType e = rhs.getType();
+		if (std::stod(rhs.toString()) == 0)
+			throw Exceptions::DivisionByZeroError();
 
-		if ((type_ == Float && e == Float) || type_ == Double && e == Double)
-			return (fac_.createOperand(
-				((getPrecision() > rhs.getPrecision() ? type_ : e)),
-					std::to_string(fmod(value_, op_convert(e, rhs.toString())))));
-		return (fac_.createOperand(
-			((getPrecision() > rhs.getPrecision() ? type_ : e)),
-				std::to_string(static_cast<int>(value_)
-					% static_cast<int>(op_convert(e, rhs.toString())))));
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
+
+		if (e == Int8)
+			return (fac_.createOperand(e, std::to_string(SC8(value_)
+				% SC8(std::stoi(rhs.toString())))));
+		else if (e == Int16)
+			return (fac_.createOperand(e, std::to_string(SC16(value_)
+				% SC16(std::stoi(rhs.toString())))));
+		else if (e == Int32)
+			return (fac_.createOperand(e, std::to_string(SC32(value_)
+				% std::stoi(rhs.toString()))));
+		else if (e == Float)
+			return (fac_.createOperand(e, std::to_string(std::fmod(SCF(value_),
+				std::stof(rhs.toString())))));
+		else
+			return (fac_.createOperand(e, std::to_string(std::fmod(SCD(value_),
+				std::stod(rhs.toString())))));
 	}
 
-
+	// ------------------------- Comparison Operators -------------------------
 	bool	operator==(IOperand const & rhs) const
-	{ return (value_ == op_convert(rhs.getType(), rhs.toString())); }
+	{
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
+
+		if (e == Int8)
+			return (SC8(value_) == SC8(std::stoi(rhs.toString())));
+		else if (e == Int16)
+			return (SC16(value_) == SC16(std::stoi(rhs.toString())));
+		else if (e == Int32)
+			return (SC32(value_) == std::stoi(rhs.toString()));
+		else if (e == Float)
+			return (SCF(value_) == std::stof(rhs.toString()));
+		else
+			return (SCD(value_) == std::stod(rhs.toString()));
+	}
 
 	bool	operator>(IOperand const & rhs) const
-	{ return (value_ > op_convert(rhs.getType(), rhs.toString())); }
+	{
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
+
+		if (e == Int8)
+			return (SC8(value_) > SC8(std::stoi(rhs.toString())));
+		else if (e == Int16)
+			return (SC16(value_) > SC16(std::stoi(rhs.toString())));
+		else if (e == Int32)
+			return (SC32(value_) > std::stoi(rhs.toString()));
+		else if (e == Float)
+			return (SCF(value_) > std::stof(rhs.toString()));
+		else
+			return (SCD(value_) > std::stod(rhs.toString()));
+	}
 
 	bool	operator<(IOperand const & rhs) const
-	{ return (value_ < op_convert(rhs.getType(), rhs.toString())); }
+	{
+		eOperandType e = (getPrecision() > rhs.getPrecision() ? type_ : rhs.getType());
 
-	std::string const & toString(void) const { return (str_); }
+		if (e == Int8)
+			return (SC8(value_) < SC8(std::stoi(rhs.toString())));
+		else if (e == Int16)
+			return (SC16(value_) < SC16(std::stoi(rhs.toString())));
+		else if (e == Int32)
+			return (SC32(value_) < std::stoi(rhs.toString()));
+		else if (e == Float)
+			return (SCF(value_) < std::stof(rhs.toString()));
+		else
+			return (SCD(value_) < std::stod(rhs.toString()));
+	}
 };
-
 
 #endif

@@ -69,7 +69,6 @@ bool	Base::bs_is_valid_data(void) { return (is_valid_data_); }
 
 void	Base::bs_run_calculator(void)
 {
-	std::cout << "RUN CALCUL" << std::endl;
 	Exceptions::line = 1;
 	for (auto i = str_.begin(); (i != str_.end() && is_exit_command_); ++i)
 	{
@@ -78,12 +77,6 @@ void	Base::bs_run_calculator(void)
 			cmd_executor_.ce_execute_command(*this);
 		++Exceptions::line;
 	}
-	//test
-	// for (auto i = stack_.begin(); i != stack_.end(); ++i)
-	// {
-	// 	std::cout << (*i)->toString() << std::endl;
-	// }
-	//
 }
 
 Base	&Base::operator=(Base const & rhs)

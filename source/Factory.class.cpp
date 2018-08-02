@@ -14,12 +14,15 @@ IOperand const	*Factory::createFloat(std::string const & value) const
 
 IOperand const	*Factory::createInt32(std::string const & value) const
 {
+	// std::cout << "!!!" << value << std::endl;
+	// long long a = std::stoll("13122312");
+	// int64_t b;
 	return (new Operand<int32_t>(std::stoi(value)));
 }
 
 IOperand const	*Factory::createInt16(std::string const & value) const
 {
-	int num = std::stoi(value);
+	int32_t num = std::stoi(value);
 
 	if (num > INT16_MAX)
 		throw Exceptions::OverflowError("Int16");
@@ -31,7 +34,7 @@ IOperand const	*Factory::createInt16(std::string const & value) const
 
 IOperand const	*Factory::createInt8(std::string const & value) const
 {
-	int num = std::stoi(value);
+	int32_t num = std::stoi(value);
 
 	if (num > INT8_MAX)
 		throw Exceptions::OverflowError("Int8");

@@ -37,3 +37,19 @@ Exceptions::EmptyStackError::EmptyStackError(std::string const & cmd)
 { error_ = "ERROR: instruction " + cmd + " on an empty stack"; }
 const char	*Exceptions::EmptyStackError::what(void) const throw()
 { return (error_.c_str()); }
+
+const char	*Exceptions::DivisionByZeroError::what(void) const throw()
+{ return ("ERROR: division by zero!"); }
+
+const char	*Exceptions::PrintCommandError::what(void) const throw()
+{ return ("ERROR: type for print command must be int8"); }
+
+Exceptions::MoreError::MoreError(std::string const & right, std::string const & left)
+{ error_ = "ERROR: assert (" + right + ") is not bigger than (" + left + ")"; }
+const char	*Exceptions::MoreError::what(void) const throw()
+{ return (error_.c_str()); }
+
+Exceptions::LessError::LessError(std::string const & right, std::string const & left)
+{ error_ = "ERROR: assert (" + right + ") is not less than (" + left + ")"; }
+const char	*Exceptions::LessError::what(void) const throw()
+{ return (error_.c_str()); }

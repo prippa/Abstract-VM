@@ -73,6 +73,36 @@ namespace Exceptions
 		EmptyStackError(std::string const & cmd);
 		const char	*what(void) const throw();
 	};
+
+	class DivisionByZeroError: public std::exception
+	{
+	public:
+		const char	*what(void) const throw();
+	};
+
+	class PrintCommandError: public std::exception
+	{
+	public:
+		const char	*what(void) const throw();
+	};
+
+	class MoreError: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		MoreError(std::string const & right, std::string const & left);
+		const char	*what(void) const throw();
+	};
+
+	class LessError: public std::exception
+	{
+	private:
+		std::string	error_;
+	public:
+		LessError(std::string const & right, std::string const & left);
+		const char	*what(void) const throw();
+	};
 };
 
 #endif
