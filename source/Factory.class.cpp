@@ -9,7 +9,7 @@ IOperand const	*FactoryClass::Factory::createDouble(std::string const & value) c
 
 	if (num > DBL_MAX)
 		throw Exceptions::OverflowError("double");
-	else if (num < DBL_MIN)
+	else if (num < -DBL_MAX)
 		throw Exceptions::UnderflowError("double");
 	else
 		return (new Operand<double>(SCD(num)));
@@ -21,7 +21,7 @@ IOperand const	*FactoryClass::Factory::createFloat(std::string const & value) co
 
 	if (num > FLT_MAX)
 		throw Exceptions::OverflowError("float");
-	else if (num < FLT_MIN)
+	else if (num < -FLT_MAX)
 		throw Exceptions::UnderflowError("float");
 	else
 		return (new Operand<float>(SCF(num)));
