@@ -29,11 +29,9 @@ private:
 
 		std::stringstream set(std::stringstream::out);
 		if (type_ < Float)
-			set << std::setprecision(precision_) << SC32(value_);
-		else if (type_ == Float)
-			set << std::setprecision(precision_) << SCF(value_);
+			set << SC32(value_);
 		else
-			set << std::setprecision(precision_) << SCD(value_);
+			set << std::setprecision(precision_) << value_;
 		str_ = set.str();
 	}
 
