@@ -13,7 +13,6 @@ class Base;
 class CommandsExecutor
 {
 private:
-	const Factory	fac_;
 	std::map<std::string, eOperandType>								type_;
 	std::map<std::string, void (CommandsExecutor::*)(Base & bs)>	cmd_;
 
@@ -21,7 +20,6 @@ private:
 	const IOperand * left_;
 
 	void		ce_del_io(const IOperand ** obj);
-	std::string	ce_format_str(std::string str);
 
 	void	ce_pop(Base & bs);
 	void	ce_dump(Base & bs);

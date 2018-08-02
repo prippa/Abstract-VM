@@ -1,6 +1,8 @@
 #include "../includes/Base.class.hpp"
 #include "../includes/Exceptions.namespace.hpp"
 
+const FactoryClass::Factory fac_;
+
 int		main(int argc, char **argv)
 {
 	Base base;

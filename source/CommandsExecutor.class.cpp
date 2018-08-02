@@ -2,23 +2,12 @@
 #include "../includes/Base.class.hpp"
 #include "../includes/Regex.macroses.hpp"
 #include "../includes/Exceptions.namespace.hpp"
+#include <iomanip>
 
 void	CommandsExecutor::ce_del_io(const IOperand ** obj)
 {
 	delete *obj;
 	*obj = nullptr;
-}
-
-std::string	CommandsExecutor::ce_format_str(std::string str)
-{
-	if (str.find('.') != std::string::npos)
-	{
-		std::string::reverse_iterator i = str.rbegin();
-		for (; (i != str.rend()) && ((i + 1) != str.rend())
-			&& (*i == '0') && (*(i + 1) != '.'); ++i);
-		str.erase(i.base(), str.end());
-	}
-	return (str);
 }
 
 // --------------------------- Commands Without Value --------------------------
@@ -34,7 +23,7 @@ void	CommandsExecutor::ce_pop(Base & bs)
 void	CommandsExecutor::ce_dump(Base & bs)
 {
 	for (auto i = bs.stack_.rbegin(); i != bs.stack_.rend(); ++i)
-		std::cout << ce_format_str((*i)->toString()) << std::endl;
+		std::cout << (*i)->toString() << std::endl;
 }
 
 void	CommandsExecutor::ce_add(Base & bs)
@@ -138,7 +127,7 @@ void	CommandsExecutor::ce_max(Base & bs)
 		if (*left_ < *right_)
 			left_ = right_;
 	}
-	std::cout << ce_format_str(left_->toString()) << std::endl;
+	std::cout << left_->toString() << std::endl;
 	right_ = nullptr;
 	left_ = nullptr;
 }
@@ -154,7 +143,7 @@ void	CommandsExecutor::ce_min(Base & bs)
 		if (*left_ > *right_)
 			left_ = right_;
 	}
-	std::cout << ce_format_str(left_->toString()) << std::endl;
+	std::cout << left_->toString() << std::endl;
 	right_ = nullptr;
 	left_ = nullptr;
 }
@@ -204,9 +193,9 @@ void	CommandsExecutor::ce_assert(Base & bs)
 	left_ = bs.stack_.back();
 	if (!(*right_ == *left_))
 	{
-		std::string left_str =  ce_format_str(left_->toString());
+		std::string left_str =  left_->toString();
 		left_ = nullptr;
-		throw Exceptions::AssertError(ce_format_str(right_->toString()), left_str);
+		throw Exceptions::AssertError(right_->toString(), left_str);
 	}
 	left_ = nullptr;
 	ce_del_io(&right_);
@@ -222,9 +211,9 @@ void	CommandsExecutor::ce_less(Base & bs)
 	left_ = bs.stack_.back();
 	if (*right_ > *left_)
 	{
-		std::string left_str =  ce_format_str(left_->toString());
+		std::string left_str =  left_->toString();
 		left_ = nullptr;
-		throw Exceptions::LessError(ce_format_str(right_->toString()), left_str);
+		throw Exceptions::LessError(right_->toString(), left_str);
 	}
 	left_ = nullptr;
 	ce_del_io(&right_);
@@ -240,9 +229,9 @@ void	CommandsExecutor::ce_more(Base & bs)
 	left_ = bs.stack_.back();
 	if (*right_ < *left_)
 	{
-		std::string left_str =  ce_format_str(left_->toString());
+		std::string left_str =  left_->toString();
 		left_ = nullptr;
-		throw Exceptions::MoreError(ce_format_str(right_->toString()), left_str);
+		throw Exceptions::MoreError(right_->toString(), left_str);
 	}
 	left_ = nullptr;
 	ce_del_io(&right_);

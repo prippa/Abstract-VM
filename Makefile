@@ -13,7 +13,8 @@ HEAD_AVM	=	IOperand.interface.hpp\
 				Regex.macroses.hpp\
 				Factory.class.hpp\
 				Operand.template.hpp\
-				CommandsExecutor.class.hpp
+				CommandsExecutor.class.hpp\
+				Casts.macroses.hpp
 
 #-------------------------- Source files ---------------------------------------
 SRC_AVM		=	main.cpp\
