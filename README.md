@@ -26,5 +26,10 @@ That programme is just do the arithmetic and some compare operations with two fi
 | **Some additional comments** | Comments start with a ’;’ and finish with a newline. |
 
 ## Usage Examples
+### Read from standard input. To end input enter - ’;;’ special symbol.
+![](https://thumbs.gfycat.com/LinearRareIndochinahogdeer-size_restricted.gif)
+***
+### Read from file.
+![](https://thumbs.gfycat.com/ColorfulNaturalElectriceel-size_restricted.gif)
 
 [more info](https://github.com/prippa/Abstract-VM/blob/master/abstract-vm.en.pdf)
