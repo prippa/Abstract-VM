@@ -27,9 +27,9 @@ That programme is just do the arithmetic and some compare operations with two fi
 
 ## Usage Examples
 ### Read from standard input. To end input enter - ’;;’ special symbol.
-![](https://github.com/prippa/my-projects-media/blob/main/abstract-VM/LinearRareIndochinahogdeer-size_restricted.gif)
+![](https://github.com/prippa/my-projects-media/blob/main/abstract-VM/LinearRareIndochinahogdeer-size_restricted.png)
 ***
 ### Read from file.
-![](https://github.com/prippa/my-projects-media/blob/main/abstract-VM/ColorfulNaturalElectriceel-size_restricted.gif)
+![](https://github.com/prippa/my-projects-media/blob/main/abstract-VM/ColorfulNaturalElectriceel-size_restricted.png)
 
 [more info](https://github.com/prippa/Abstract-VM/blob/master/abstract-vm.en.pdf)
